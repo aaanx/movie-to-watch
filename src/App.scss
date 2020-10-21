@@ -1,0 +1,11 @@
+@mixin flexCenter($content, $direction) {
+  display: flex;
+  align-items: center;
+  justify-content: $content;
+  flex-direction: $direction;
+}
+
+.App {
+  text-align: center;
+  @include flexCenter(center, column);
+}
