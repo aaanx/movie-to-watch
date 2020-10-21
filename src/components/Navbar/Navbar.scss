@@ -1,0 +1,16 @@
+@import "../../App.scss";
+
+.navbar {
+  width: 100vw;
+  height: 50px;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 30px;
+  @include flexCenter(space-between, row);
+
+  &__title {
+    margin-left: 20px;
+  }
+  &__watch-list {
+    margin-right: 20px;
+  }
+}
