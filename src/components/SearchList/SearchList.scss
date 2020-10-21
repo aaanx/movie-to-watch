@@ -1,0 +1,21 @@
+@import "../../App.scss";
+
+.search-list {
+  margin: 20px 0;
+  min-width: 70vw;
+
+  &__item {
+    @include flexCenter(space-around, row);
+    margin: 30px 15px;
+    border: 1px solid #000;
+
+    &__image {
+      width: 30px;
+      height: 30px;
+    }
+
+    &__button {
+      cursor: pointer;
+    }
+  }
+}
