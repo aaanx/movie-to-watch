@@ -1,14 +1,14 @@
 import React from 'react';
+import "./MovieSearch.scss";
 
-
-function MovieSearch() {
+function MovieSearch(props) {
 
     return (
-        <div>
-            <p>Search for a movie and add it to your watch list</p>
-            <form>
-                <input type="text" name="movie" className="search-input" />
-                <input type="submit" value="Add to watch list"/>
+        <div className="movie-search">
+            <p className="movie-search__text">Search for a movie to add it to your watch list</p>
+            <form className="movie-search__form">
+                <input type="text" name={props.movieName} onChange={props.handleMovieChange} className="movie-search__form__input" />
+                <input type="submit" value="Search" onClick={props.handleSearch} className="movie-search__form__button"/>
             </form>
         </div>
     )
