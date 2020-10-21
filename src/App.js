@@ -1,8 +1,12 @@
 import React from 'react';
 import MovieSearch from "./components/MovieSearch/MovieSearch.js";
 import SearchList from "./components/SearchList/SearchList.js";
+import WatchList from "./components/WatchList/WatchList.js";
+import Navbar from "./components/Navbar/Navbar.js";
 import axios from 'axios';
 import './App.scss';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 
 class App extends React.Component {
   constructor(props){
@@ -53,14 +57,22 @@ class App extends React.Component {
     //   return <div>Error: {error.message}</div>;
     // } else {
       return (
+        <Router>
         <div className="App">
-          <MovieSearch 
-            movieName={this.state.movieName} 
-            handleMovieChange={this.handleMovieChange} 
-            handleSearch={this.handleSearch}  
-          />
+          <Navbar/>
+          <Switch>
+            <Route path="/watch-list" exact component={WatchList}/>
+            <Route path="/">
+              <MovieSearch 
+                movieName={this.state.movieName} 
+                handleMovieChange={this.handleMovieChange} 
+                handleSearch={this.handleSearch}  
+              />
+            </Route>
+          </Switch>
           {isLoaded ? <SearchList movies={this.state.movies.results}/> : "" }
         </div>
+        </Router>
       );
     }
   }
