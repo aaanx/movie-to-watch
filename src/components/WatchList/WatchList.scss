@@ -1,0 +1,13 @@
+.watch-list {
+  &__title {
+  }
+  &__container {
+    border: 1px solid red;
+    &__list {
+      border: 1px solid blue;
+      &__item {
+        border: 1px solid orange;
+      }
+    }
+  }
+}
