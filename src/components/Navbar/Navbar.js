@@ -6,7 +6,10 @@ function Navbar(){
 return (
     <div className="navbar">
         <p className="navbar__title">What to watch?</p>
-        <Link to="/watch-list" className="navbar__watch-list">My watch list</Link>
+        <p> 
+            <span>12</span> 
+            <Link to="/watch-list" className="navbar__watch-list">My watch list</Link>
+        </p>
     </div>
 )
 }
