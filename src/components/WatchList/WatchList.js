@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import "./WatchList.scss";
 
 function WatchList(props) {
@@ -10,7 +10,7 @@ function WatchList(props) {
                 <ol className="watch-list__container__list">
                     {props.watchList.map(movie => {
                         return (
-                        <li className="watch-list__container__list__item" key={movie.id}>{movie.title}</li>
+                        <li className="watch-list__container__list__item" key={movie.id}>{movie.title} {movie.description}</li>
                         )
                     })}
                 </ol>
