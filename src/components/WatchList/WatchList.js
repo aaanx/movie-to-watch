@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./WatchList.scss";
 
 function WatchList(props) {
-
+   
     return (
         <div className="watch-list">
             <p className="watch-list__title">Watch List</p>
