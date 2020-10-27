@@ -24,17 +24,35 @@ constructor(props){
   };
 }
 
+removeDuplicates(originalArray, prop) {
+  var newArray = [];
+  var lookupObject = {};
+
+  for (var i in originalArray) {
+    lookupObject[originalArray[i][prop]] = originalArray[i];
+  }
+
+  for (var j in lookupObject) {
+    newArray.push(lookupObject[j]);
+  }
+  
+  return newArray;
+}
+
 handleAddToWatchList(movieToAddID){
   let watchList = this.state.watchList;
+
   watchList.push(
     this.state.movies.results.find((movie) => {
     return movie.id == movieToAddID;
     })
   )
+
+  let uniqueWatchList = this.removeDuplicates(watchList, "id");
+
   this.setState({
-    watchList: watchList
+    watchList: uniqueWatchList
   }) 
-  localStorage.setItem('watchList', JSON.stringify(this.state.watchList));
 }
 
 handleMovieChange(e) {
@@ -62,9 +80,8 @@ handleSearch(e) {
 }
 
 componentDidUpdate() {
-  console.log(this.state.movies.results);
   console.log(this.state.watchList);
-  console.log(typeof this.state.watchList);
+  localStorage.setItem('watchList', JSON.stringify(this.state.watchList));
 }
 
 render(){
