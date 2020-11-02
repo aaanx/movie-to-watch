@@ -10,6 +10,7 @@
   &__title {
     margin: 20px;
     color: #05386b;
+    text-decoration: none;
     font-weight: 700;
     @include fontSize(32px);
     font-family: "Open-Sans", sans-serif;

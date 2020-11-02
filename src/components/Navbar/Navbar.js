@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Navbar(){
 return (
     <div className="navbar">
-        <p className="navbar__title">What to watch?</p>
+        <Link to="/" className="navbar__title">What to watch?</Link>
         <p> 
             <span>12</span> 
             <Link to="/watch-list" className="navbar__watch-list">My watch list</Link>
