@@ -1,16 +1,25 @@
 @import "../../App.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Open+Sans:ital,wght@0,400;1,300;1,700&display=swap");
 
 .navbar {
   width: 100vw;
-  height: 50px;
-  background-color: rgb(204, 204, 204);
+  min-height: 80px;
   margin-bottom: 30px;
   @include flexCenter(space-between, row);
 
   &__title {
-    margin-left: 20px;
+    margin: 20px;
+    color: #05386b;
+    font-weight: 700;
+    @include fontSize(32px);
+    font-family: "Open-Sans", sans-serif;
+    font-style: italic;
   }
   &__watch-list {
-    margin-right: 20px;
+    margin: 20px;
+    @include fontSize(32px);
+    font-weight: 300;
+    text-decoration: none;
+    color: #05386b;
   }
 }

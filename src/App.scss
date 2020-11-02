@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Open+Sans:ital,wght@0,400;1,300;1,700&display=swap");
+
 @mixin flexCenter($content, $direction) {
   display: flex;
   align-items: center;
@@ -5,7 +7,18 @@
   flex-direction: $direction;
 }
 
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 18px;
+  @return #{$remSize}rem;
+}
+
 .App {
   text-align: center;
   @include flexCenter(center, column);
+  font-family: "Montserrat", sans-serif;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import "./SearchList.scss";
 
+
 function SearchList(props) {
     return (
         <div className="search-list">
@@ -26,13 +27,19 @@ function SearchListItem(props) {
 
     return (
         <div className="search-list__item" id={props.id}>
-            <img src={props.image} alt="movie_img" className="search-list__item__image"/>
-            <p className="search-list__item__title">{props.title} {props.description}</p>
-            <input type="submit" value="Add to watch list" onClick={() => props.handleAddToWatchList(props.id)} className="search-list__item__button"/>
+            
+            
+            <div className="search-list__item__container">
+                <img src={props.image} alt="movie_img" className="search-list__item__container__image"/>
+                <div className="search-list__item__container__overlay">
+                    <p className="search-list__item__container__overlay__title">{props.title}</p>
+                    <button onClick={() => props.handleAddToWatchList(props.id)} className="search-list__item__container__overlay__button">+</button>
+                </div>
+            </div>
+            {/* <p className="search-list__item__description">{props.description}</p> */}
+        
         </div>
     )
 }
 
 export default SearchList;
-
-//onClick={()=>this.props.myFunction(param)}
