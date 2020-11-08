@@ -17,10 +17,29 @@
     font-style: italic;
   }
   &__watch-list {
-    margin: 20px;
-    @include fontSize(32px);
-    font-weight: 300;
-    text-decoration: none;
-    color: #05386b;
+    position: relative;
+    margin-right: 20px;
+
+    &__number {
+      display: block;
+      background-color: #05386b;
+      color: rgb(237, 245, 225);
+      padding: 5px;
+      border-radius: 50%;
+      @include fontSize(18px);
+      position: absolute;
+      margin-bottom: -15px;
+      margin-left: -10px;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__link {
+      margin: 20px;
+      @include fontSize(32px);
+      font-weight: 300;
+      text-decoration: none;
+      color: #05386b;
+    }
   }
 }

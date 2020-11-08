@@ -92,7 +92,7 @@ render(){
     return (
       <Router>
       <div className="App">
-        <Navbar/>
+        <Navbar numOfmovies={this.state.watchList.length}/>
         <Switch>
           <Route path="/watch-list">
             <WatchList watchList={this.state.watchList} />
