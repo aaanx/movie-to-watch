@@ -2,10 +2,10 @@ import React from 'react';
 import "./SearchList.scss";
 
 
-function SearchList(props) {
+function SearchList({movies, handleAddToWatchList}) {
     return (
         <div className="search-list">
-            {props.movies.map((movie) => {
+            {movies.map((movie) => {
                 return (
                 <SearchListItem
                     key={movie.id}
@@ -13,7 +13,7 @@ function SearchList(props) {
                     title={movie.title}
                     description={movie.description}
                     image={movie.image}
-                    handleAddToWatchList={props.handleAddToWatchList}
+                    handleAddToWatchList={handleAddToWatchList}
                 />
                 )
             })}
@@ -23,20 +23,20 @@ function SearchList(props) {
 }
 
 
-function SearchListItem(props) {
+function SearchListItem({id, title, description, image, handleAddToWatchList}) {
 
     return (
-        <div className="search-list__item" id={props.id}>
+        <div className="search-list__item" id={id}>
             
             
             <div className="search-list__item__container">
-                <img src={props.image} alt="movie_img" className="search-list__item__container__image"/>
+                <img src={image} alt="movie_img" className="search-list__item__container__image"/>
                 <div className="search-list__item__container__overlay">
-                    <p className="search-list__item__container__overlay__title">{props.title}</p>
-                    <button onClick={() => props.handleAddToWatchList(props.id)} className="search-list__item__container__overlay__button">+</button>
+                    <p className="search-list__item__container__overlay__title">{title}</p>
+                    <button onClick={() => handleAddToWatchList(id)} className="search-list__item__container__overlay__button">+</button>
                 </div>
             </div>
-            {/* <p className="search-list__item__description">{props.description}</p> */}
+            {/* <p className="search-list__item__description">{description}</p> */}
         
         </div>
     )
