@@ -3,6 +3,7 @@ import MovieSearch from "./components/MovieSearch/MovieSearch.js";
 import SearchList from "./components/SearchList/SearchList.js";
 import WatchList from "./components/WatchList/WatchList.js";
 import Navbar from "./components/Navbar/Navbar.js";
+import Pagination from "./components/Pagination/Pagination.js";
 import axios from 'axios';
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -14,6 +15,7 @@ class App extends React.Component {
     this.handleMovieChange = this.handleMovieChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleAddToWatchList = this.handleAddToWatchList.bind(this);
+    this.paginate = this.paginate.bind(this);
     this.state = {
       error: null,
       isLoaded: false,
@@ -21,8 +23,16 @@ class App extends React.Component {
       movieName: "",
       watchList: JSON.parse(localStorage.getItem('watchList')) || [],
       watchListStorage: [],
-      loading: ""
+      loading: "",
+      currentPage: 1,
+      moviesPerPage : 4
     };
+  }
+
+  paginate(pageNumber) {
+    this.setState({
+      currentPage: pageNumber
+    })
   }
 
   removeDuplicates(originalArray, prop) {
@@ -42,7 +52,7 @@ class App extends React.Component {
   handleAddToWatchList(movieToAddID){
     let watchList = this.state.watchList;
     watchList.push(
-    this.state.movies.results.find((movie) => {
+    this.state.movies.find((movie) => {
       return movie.id == movieToAddID;
     })
   )
@@ -68,7 +78,7 @@ class App extends React.Component {
         result => {
           this.setState({
             isLoaded: true,
-            movies: result.data
+            movies: result.data.results
           });
         },
         error => {
@@ -84,12 +94,16 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.watchList);
+    //console.log(this.state.watchList);
+    console.log(this.state.movies);
     localStorage.setItem('watchList', JSON.stringify(this.state.watchList));
   }
 
   render(){
-    const { error, isLoaded, movies, loading } = this.state;
+    const { error, isLoaded, loading, currentPage, moviesPerPage, movies } = this.state;
+    const indexOfLastMovie = currentPage * moviesPerPage;
+    const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+    const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -108,13 +122,16 @@ class App extends React.Component {
                 handleSearch={this.handleSearch}  
               />
               {isLoaded ? 
-              <SearchList 
-                movies={this.state.movies.results}
-                handleAddToWatchList={this.handleAddToWatchList}
-              /> : loading }
+              <React.Fragment>
+                <SearchList 
+                  movies={currentMovies}
+                  handleAddToWatchList={this.handleAddToWatchList}
+                />
+                <Pagination moviesPerPage={moviesPerPage} totalMovies={movies.length} paginate={this.paginate}/>
+              </React.Fragment>
+              : loading }
             </Route>
           </Switch>
-          
         </div>
         </Router>
       );

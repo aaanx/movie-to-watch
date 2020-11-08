@@ -1,0 +1,20 @@
+@import "../../App.scss";
+
+.pagination {
+  @include flexCenter(center, row);
+  list-style: none;
+  margin-bottom: 30px;
+
+  &__item {
+    display: block;
+    background-color: #05386b;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #05386b;
+
+    &__link {
+      color: #edf5e1;
+      text-decoration: none;
+    }
+  }
+}
